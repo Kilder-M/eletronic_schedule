@@ -6,7 +6,7 @@ class Contact {
   String name;
   String phone;
   String? email;
-  String? urlImage;
+  String? imageUrl;
   Address? address;
   Reminder? reminder;
   Contact(
@@ -15,6 +15,6 @@ class Contact {
       this.address,
       required this.phone,
       this.email,
-      this.urlImage,
+      this.imageUrl,
       required this.id});
 }
