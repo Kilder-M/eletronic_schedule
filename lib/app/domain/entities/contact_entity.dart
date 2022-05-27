@@ -1,20 +1,28 @@
-import 'package:eletronic_schedule/app/domain/entities/address_entity.dart';
 import 'package:eletronic_schedule/app/domain/entities/reminder_entity.dart';
 
 class Contact {
   int id;
+  int? addressId;
   String name;
   String phone;
   String? email;
   String? imageUrl;
-  Address? address;
   Reminder? reminder;
   Contact(
       {required this.name,
       this.reminder,
-      this.address,
+      this.addressId,
       required this.phone,
       this.email,
       this.imageUrl,
       required this.id});
+
+  factory Contact.fromMap(Map<String, dynamic> sql) => Contact(
+        id: sql['id'],
+        name: sql["name"],
+        phone: sql["phone"],
+        email: sql["email"],
+        imageUrl: sql["image_Url"],
+        addressId: sql["address_Id"],
+      );
 }

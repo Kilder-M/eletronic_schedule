@@ -16,4 +16,14 @@ class Address {
     required this.streetAddressNumber,
     required this.complement,
   });
+
+  factory Address.fromMap(Map<String, dynamic> sql) => Address(
+        id: sql['id'],
+        city: sql["city"],
+        state: sql["state"],
+        zipCode: sql["zip_code"],
+        streetAddress: sql["street_address"],
+        streetAddressNumber: sql["stree_adress_number"],
+        complement: sql["complement"],
+      );
 }
