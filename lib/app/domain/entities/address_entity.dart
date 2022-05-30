@@ -1,5 +1,5 @@
 class Address {
-  int id;
+  int? id;
   String city;
   String state;
   String zipCode;
@@ -8,7 +8,7 @@ class Address {
   String complement;
 
   Address({
-    required this.id,
+    this.id,
     required this.city,
     required this.state,
     required this.zipCode,
@@ -23,7 +23,7 @@ class Address {
         state: sql["state"],
         zipCode: sql["zip_code"],
         streetAddress: sql["street_address"],
-        streetAddressNumber: sql["stree_adress_number"],
+        streetAddressNumber: sql["street_address_number"],
         complement: sql["complement"],
       );
 }
