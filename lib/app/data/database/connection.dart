@@ -5,13 +5,15 @@ import 'package:sqflite/sqflite.dart';
 class Connection {
   static Database? _db;
 
-  static Future<Database> getProduct() async {
+  static Future<Database> getConnection() async {
     if (_db == null) {
       String path =
           join(await getDatabasesPath(), 'eletronic_schedule_data_base');
-      _db = await openDatabase(path, version: 1, onCreate: (db, v) {
-        db.execute(createAddressTable);
-        db.execute(createContactTable);
+      deleteDatabase(path);
+      return _db =
+        await openDatabase(path, version: 1, onCreate: (db, v) async {
+        await db.execute(createAddressTable);
+        await db.execute(createContactTable);
       });
     }
     return _db!;
