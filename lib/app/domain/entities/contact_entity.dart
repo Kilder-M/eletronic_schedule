@@ -3,6 +3,7 @@ import 'package:eletronic_schedule/app/domain/entities/reminder_entity.dart';
 class Contact {
   int? id;
   int? addressId;
+  int? notificationId;
   String name;
   String phone;
   String? email;
@@ -11,6 +12,7 @@ class Contact {
   Contact(
       {required this.name,
       this.reminder,
+      this.notificationId,
       this.addressId,
       required this.phone,
       this.email,
@@ -24,5 +26,6 @@ class Contact {
         email: sql["email"],
         imageUrl: sql["image_Url"],
         addressId: sql["address_id"],
+        notificationId: sql["notification_id"],
       );
 }
