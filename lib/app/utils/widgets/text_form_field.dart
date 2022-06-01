@@ -32,6 +32,8 @@ class TextFormFieldWidget extends StatelessWidget {
       padding: const EdgeInsets.only(bottom:8.0),
       child: TextFormField(
         validator: validator,
+        inputFormatters: inputFormatter,
+        keyboardType: keyboardType,
         controller: controller,
         onSaved: onSaved,
         onChanged: onChanged,

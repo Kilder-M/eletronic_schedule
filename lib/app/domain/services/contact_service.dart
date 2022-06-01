@@ -6,11 +6,10 @@ import 'package:eletronic_schedule/app/domain/exceptions/domain_layer_exception.
 class ContactService {
   final _contactDAO = ContactDAOImp();
 
-  save(Contact contact,Address address) async {
-    validateEmail(contact.email);
+  save(Contact contact, {Address? address}) async {
     validatePhone(contact.phone);
-    validateState(address.city, address.state, address.zipCode, address.streetAddress, address.streetAddressNumber, address.complement);
-    validateCity(address.city, address.state, address.zipCode, address.streetAddress, address.streetAddressNumber, address.complement);
+    // validateState(address.city, address.state, address.zipCode, address.streetAddress, address.streetAddressNumber, address.complement);
+    // validateCity(address.city, address.state, address.zipCode, address.streetAddress, address.streetAddressNumber, address.complement);
     await _contactDAO.save(contact);
   }
 
@@ -18,8 +17,8 @@ class ContactService {
     await _contactDAO.remove(contact);
   }
 
-  getList() async {
-    await _contactDAO.getList();
+  Future<List<Contact>> getList() async {
+    return await _contactDAO.getList();
   }
 
   getByName(String name) async {
@@ -34,7 +33,7 @@ class ContactService {
     var max = 50;
     var min = 2;
 
-    if (name == null) {
+    if (name == '' || name == null) {
       throw DomainLayerException(message: "O nome é obrigatório.");
     } else if (name.length > max) {
       throw DomainLayerException(
@@ -48,21 +47,15 @@ class ContactService {
   validatePhone(String? phone) {
     var format = RegExp(
         r'^\([1-9]{2}\) [9] [6-9]{1}[0-9]{3}\-[0-9]{4}$'); // (99) 9 9999-9999
-    if (phone == null) {
+    if (phone == '' || phone == null) {
       throw DomainLayerException(message: 'O telefone é obrigatório.');
     } else if (!format.hasMatch(phone)) {
       throw DomainLayerException(
-          message: 'Formato inválido. O formato deve ser (99) 9 9999-9999.');
+          message: 'O número inserido é invalido');
     }
   }
 
-  validateEmail(String? email) {
-    if (email == null) {
-      throw DomainLayerException(message: "O email é obrigatório.");
-    } else if (!email.contains('@')) {
-      throw DomainLayerException(message: 'O email deve possuir @');
-    }
-  }
+  
 
   validateCity(
     String? city,

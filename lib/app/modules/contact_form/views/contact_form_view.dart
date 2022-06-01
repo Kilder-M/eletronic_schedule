@@ -1,6 +1,9 @@
+import 'package:eletronic_schedule/app/modules/home/controllers/contact_navigator_bar_item_controller.dart';
+import 'package:eletronic_schedule/app/modules/home/views/home_view.dart';
 import 'package:eletronic_schedule/app/utils/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../controllers/contact_form_controller.dart';
 
@@ -18,7 +21,43 @@ class ContactFormView extends GetView<ContactFormController> {
     final textEditingControllerStreetAddresNumber = TextEditingController();
     final textEditingControllerZipCode = TextEditingController();
     final textEditingControllerComplement = TextEditingController();
+    final form = GlobalKey<FormState>();
+    var mask = MaskTextInputFormatter(mask: '(##) # ####-####');
+    var _controller = Get.put(ContactFormController());
+    var _contactNavigatorBarItemController = Get.put(ContactNavigatorBarItemController());
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.pink,
+        child: const Icon(Icons.save),
+        onPressed: () {
+          form.currentState!.validate();
+          form.currentState!.save();
+          if (_controller.isValid) {
+            _controller.save(_controller.contact);
+            Get.off(const HomeView());
+            _contactNavigatorBarItemController.getContactList();
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                content: Text(
+                  _controller.contact.id == null
+                      ? 'Contato criado! '
+                      : 'Contato atualizado!',
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              ),
+            );
+          }
+        },
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -70,30 +109,67 @@ class ContactFormView extends GetView<ContactFormController> {
                     color: Colors.white,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20,50,20,0),
+                    padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
                     child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 10,),
-                          TextFormFieldWidget(
-                              labelText: 'Nome', controller: textEditingControllerName),
-                          TextFormFieldWidget(
-                              labelText: 'Telefone', controller: textEditingControllerPhone),
-                          TextFormFieldWidget(
-                              labelText: 'Email', controller: textEditingControllerEmail),
-                          TextFormFieldWidget(
-                              labelText: 'Cidade', controller: textEditingControllerCity),
-                          TextFormFieldWidget(
-                              labelText: 'Estado', controller: textEditingControllerState),
-                          TextFormFieldWidget(
-                              labelText: 'Endereço', controller: textEditingControllerStreetAddress),
-                              TextFormFieldWidget(
-                              labelText: 'Número', controller: textEditingControllerStreetAddresNumber),
-                          TextFormFieldWidget(
-                              labelText: 'CEP', controller: textEditingControllerZipCode),
-                          TextFormFieldWidget(
-                              labelText: 'Complemento', controller: textEditingControllerComplement),
-                        ],
+                      child: Form(
+                        key: form,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Nome',
+                              controller: textEditingControllerName,
+                              validator: _controller.validateName,
+                              onSaved: (text) {
+                                _controller.contact.name = text ?? '';
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Telefone',
+                              controller: textEditingControllerPhone,
+                              validator: _controller.validatePhone,
+                              keyboardType: TextInputType.phone,
+                              inputFormatter: [mask],
+                              onSaved: (text) {
+                                _controller.contact.phone = text ?? '';
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Email',
+                              controller: textEditingControllerEmail,
+                              onSaved: (text) {
+                                _controller.contact.email = text;
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Cidade',
+                              controller: textEditingControllerCity,
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Estado',
+                              controller: textEditingControllerState,
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Endereço',
+                              controller: textEditingControllerStreetAddress,
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Número',
+                              controller:
+                                  textEditingControllerStreetAddresNumber,
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'CEP',
+                              controller: textEditingControllerZipCode,
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Complemento',
+                              controller: textEditingControllerComplement,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
