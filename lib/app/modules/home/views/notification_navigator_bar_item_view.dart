@@ -8,6 +8,10 @@ class NotificationNavigatorBarItemView extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+            backgroundColor: Colors.pink,
+            child: const Icon(Icons.add)),
       body: Padding(
         padding: const EdgeInsets.only(top:40.0),
         child: Column(
