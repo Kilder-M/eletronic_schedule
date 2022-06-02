@@ -1,3 +1,6 @@
+import 'package:eletronic_schedule/app/domain/entities/address_entity.dart';
+import 'package:eletronic_schedule/app/domain/entities/contact_entity.dart';
+import 'package:eletronic_schedule/app/modules/contact_form/views/contact_form_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,6 +40,7 @@ class DetailsContactView extends GetView<DetailsContactController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
                           onTap: () {
@@ -44,6 +48,18 @@ class DetailsContactView extends GetView<DetailsContactController> {
                           },
                           child: const Icon(
                             Icons.chevron_left_rounded,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            showDialogMethod(
+                              context,
+                              _controller.contactArgument,
+                              _controller.address.value,
+                            );
+                          },
+                          child: const Icon(
+                            Icons.edit,
                           ),
                         ),
                       ],
@@ -109,6 +125,27 @@ class DetailsContactView extends GetView<DetailsContactController> {
     );
   }
 
+  showDialogMethod(BuildContext context, Contact contact, Address address) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: const Text('O que deseja fazer?'),
+              actions: [
+                TextButton(
+                  onPressed: () => {
+                    Get.to(const ContactFormView(),
+                        arguments: [contact, address]),
+                  },
+                  child: const Text('Editar'),
+                ),
+                TextButton(
+                  onPressed: () => Get.back(),
+                  child: const Text('Voltar'),
+                ),
+              ],
+            ));
+  }
+
   Widget textsColumn({required String title, String? field}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
@@ -133,6 +170,10 @@ class DetailsContactView extends GetView<DetailsContactController> {
               fontWeight: FontWeight.w500,
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(top:8.0),
+            child: Container(width: double.infinity,color: Colors.grey,height: 0.5,),
+          )
         ],
       ),
     );

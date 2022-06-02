@@ -1,5 +1,7 @@
+import 'package:eletronic_schedule/app/domain/entities/address_entity.dart';
 import 'package:eletronic_schedule/app/domain/entities/contact_entity.dart';
 import 'package:eletronic_schedule/app/modules/contact_form/views/contact_form_view.dart';
+import 'package:eletronic_schedule/app/modules/details_contact/views/details_contact_view.dart';
 import 'package:eletronic_schedule/app/modules/home/controllers/contact_navigator_bar_item_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,17 +12,18 @@ class ContactNavigatorBarItemView
 
   @override
   Widget build(BuildContext context) {
+    var _controller = Get.put(ContactNavigatorBarItemController());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.to(const ContactFormView());
+            Get.to(const ContactFormView(),arguments: [Contact(name: '', phone: ''),Address()]);
           },
           backgroundColor: Colors.pink,
           child: const Icon(Icons.add)),
       body: Padding(
         padding: const EdgeInsets.only(top: 40.0),
-        child: Obx(()=>
-           Column(
+        child: Obx(
+          () => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
@@ -32,7 +35,7 @@ class ContactNavigatorBarItemView
               ),
               Expanded(
                 child: FutureBuilder(
-                  future: controller.contactList.value,
+                  future: _controller.contactList.value,
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(
@@ -45,17 +48,39 @@ class ContactNavigatorBarItemView
                               itemCount: contactList.length,
                               itemBuilder: (context, index) {
                                 var contact = contactList[index];
-                                return ListTile(
-                                  trailing: Text(contact.addressId.toString()),
-                                  title: Text(
-                                    contact.name,
-                                    style: const TextStyle(
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(const DetailsContactView(),
+                                        arguments: contact);
+                                  },
+                                  child: ListTile(
+                                    trailing: GestureDetector(
+                                      onTap: () {
+                                        showDialogMethod(context);
+                                      },
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: const [
+                                          Icon(
+                                            Icons.more_horiz_outlined,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    title: Text(
+                                      contact.name,
+                                      style: const TextStyle(
                                         fontSize: 18,
-                                        fontWeight: FontWeight.w500),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    subtitle: Text(contact.phone),
+                                    leading: const CircleAvatar(
+                                      backgroundColor: Colors.blue,
+                                      radius: 30,
+                                    ),
                                   ),
-                                  subtitle: Text(contact.phone),
-                                  leading: const CircleAvatar(
-                                      backgroundColor: Colors.blue, radius: 30),
                                 );
                               },
                             )
@@ -69,6 +94,25 @@ class ContactNavigatorBarItemView
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  showDialogMethod(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('O que deseja fazer?'),
+        actions: [
+          TextButton(
+            onPressed: () => {},
+            child: const Text('Excluir'),
+          ),
+          TextButton(
+            onPressed: () => Get.back(),
+            child: const Text('Voltar'),
+          ),
+        ],
       ),
     );
   }

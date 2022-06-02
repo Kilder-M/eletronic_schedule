@@ -8,19 +8,22 @@ class ContactFormController extends GetxController {
   final _contactService = ContactService();
   final _addressService = AddressService();
 
-  Contact contact = Get.arguments ?? Contact(name: '', phone: '');
-  Address address = Get.arguments ?? Address();
+  Contact contact = Get.arguments[0] ?? Contact(name: '', phone: '');
+  Address address = Get.arguments[1] ?? Address();
+
   bool _nameIsValid = false;
   bool _phoneIsValid = false;
 
-  bool get isValid => _nameIsValid && _phoneIsValid ;
+
+  bool get isValid => _nameIsValid && _phoneIsValid;
 
   ContactFormController();
 
   saveContact(Contact contact) async {
     await _contactService.save(contact);
   }
- Future<Address> saveAddress(Address address) async {
+
+  Future<Address> saveAddress(Address address) async {
     return await _addressService.save(address);
   }
 
