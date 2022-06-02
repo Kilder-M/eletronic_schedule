@@ -41,15 +41,20 @@ class NotificationNavigatorBarItemView
                     } else {
                       var customNotificationList =
                           snapshot.data as List<CustomNotification>;
-                      return ListView.builder(
-                        itemCount: customNotificationList.length,
-                        itemBuilder: (context, index) {
-                          var customNotification =
-                              customNotificationList[index];
-                          return listTileWidget(
-                              time: customNotification.time, subtitle: customNotification.body);
-                        },
-                      );
+                      return customNotificationList.isNotEmpty
+                          ? ListView.builder(
+                              itemCount: customNotificationList.length,
+                              itemBuilder: (context, index) {
+                                var customNotification =
+                                    customNotificationList[index];
+                                return listTileWidget(
+                                    time: customNotification.time,
+                                    subtitle: customNotification.body);
+                              },
+                            )
+                          : const Center(
+                              child: Text('Não há lembretes.'),
+                            );
                     }
                   }),
             ),
@@ -78,4 +83,3 @@ class NotificationNavigatorBarItemView
     );
   }
 }
-
