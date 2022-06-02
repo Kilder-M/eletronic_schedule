@@ -1,20 +1,18 @@
+import 'package:eletronic_schedule/app/domain/entities/address_entity.dart';
+import 'package:eletronic_schedule/app/domain/entities/contact_entity.dart';
+import 'package:eletronic_schedule/app/domain/services/address_service.dart';
 import 'package:get/get.dart';
 
 class DetailsContactController extends GetxController {
-  //TODO: Implement DetailsContactController
+  final _addressService = AddressService();
+  var address = Address().obs;
+  Contact contactArgument = Get.arguments;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  DetailsContactController(){
+    getById();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Future<Address> getById() async {
+   return address.value = await _addressService.getById(contactArgument.addressId);
   }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }

@@ -56,4 +56,19 @@ class AddressDAOImp implements AddressInterface {
       return address;
     }
   }
+
+  @override
+  Future<Address> getById(int? id) async {
+    if (id != null) {
+      _db = await Connection.getConnection();
+      List<Map<String, dynamic>> queryResult =
+          await _db!.query('address', where: 'id = ?', whereArgs: [id]);
+      List<Address> addressList = List.generate(queryResult.length, (index) {
+        var row = queryResult[index];
+        return Address.fromMap(row);
+      });
+      return addressList.first;
+    }
+    return Address();
+  }
 }
