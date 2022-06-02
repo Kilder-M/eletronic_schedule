@@ -1,5 +1,5 @@
 import 'package:eletronic_schedule/app/modules/home/controllers/notification_navigator_bar_item_controller.dart';
-import 'package:eletronic_schedule/app/modules/home/views/notification_navigator_bar_item_view.dart';
+import 'package:eletronic_schedule/app/modules/home/views/home_view.dart';
 import 'package:eletronic_schedule/app/utils/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,7 +33,7 @@ class NotificationFormView extends GetView<NotificationFormController> {
                 seconds: _controller.notificationTimeInseconds,
               ),
             );
-            Get.offAll(const NotificationNavigatorBarItemView());
+            Get.offAll(const HomeView(initialIndex: 1,));
             _notificationNavigatorBarItemController.getList();
             showDialog(
               context: context,
