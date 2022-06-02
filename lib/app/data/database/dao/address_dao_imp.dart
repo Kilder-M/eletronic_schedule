@@ -45,7 +45,7 @@ class AddressDAOImp implements AddressInterface {
     } else {
       sql =
           '''UPDATE address SET city = ?,state = ?, zip_code = ?, street_address = ?, street_address_number = ?,complement = ? WHERE id = ?''';
-     address.id = await _db!.rawUpdate(sql, [
+     await _db!.rawUpdate(sql, [
         address.city,
         address.state,
         address.zipCode,
