@@ -1,3 +1,4 @@
+import 'package:eletronic_schedule/app/domain/entities/address_entity.dart';
 import 'package:eletronic_schedule/app/modules/home/controllers/contact_navigator_bar_item_controller.dart';
 import 'package:eletronic_schedule/app/modules/home/views/home_view.dart';
 import 'package:eletronic_schedule/app/utils/widgets/text_form_field.dart';
@@ -24,17 +25,25 @@ class ContactFormView extends GetView<ContactFormController> {
     final form = GlobalKey<FormState>();
     var mask = MaskTextInputFormatter(mask: '(##) # ####-####');
     var _controller = Get.put(ContactFormController());
-    var _contactNavigatorBarItemController = Get.put(ContactNavigatorBarItemController());
+    var _contactNavigatorBarItemController =
+        Get.put(ContactNavigatorBarItemController());
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pink,
         child: const Icon(Icons.save),
-        onPressed: () {
+        onPressed: () async {
           form.currentState!.validate();
           form.currentState!.save();
           if (_controller.isValid) {
-            _controller.save(_controller.contact);
+            if (_controller.address.city != null) {
+              Address addressResponse =
+                  await _controller.saveAddress(_controller.address);
+              _controller.contact.addressId = addressResponse.id;
+              print(addressResponse.city);
+              print(addressResponse.id);
+              await _controller.saveContact(_controller.contact);
+            }
             Get.off(const HomeView());
             _contactNavigatorBarItemController.getContactList();
             showDialog(
@@ -146,27 +155,45 @@ class ContactFormView extends GetView<ContactFormController> {
                             TextFormFieldWidget(
                               labelText: 'Cidade',
                               controller: textEditingControllerCity,
+                              onSaved: (text) {
+                                _controller.address.city = text;
+                              },
                             ),
                             TextFormFieldWidget(
                               labelText: 'Estado',
                               controller: textEditingControllerState,
+                              onSaved: (text) {
+                                _controller.address.state = text;
+                              },
                             ),
                             TextFormFieldWidget(
                               labelText: 'Endereço',
                               controller: textEditingControllerStreetAddress,
+                              onSaved: (text) {
+                                _controller.address.streetAddress = text;
+                              },
                             ),
                             TextFormFieldWidget(
                               labelText: 'Número',
                               controller:
                                   textEditingControllerStreetAddresNumber,
+                              onSaved: (text) {
+                                _controller.address.streetAddressNumber = text;
+                              },
                             ),
                             TextFormFieldWidget(
                               labelText: 'CEP',
                               controller: textEditingControllerZipCode,
+                              onSaved: (text) {
+                                _controller.address.zipCode = text;
+                              },
                             ),
                             TextFormFieldWidget(
                               labelText: 'Complemento',
                               controller: textEditingControllerComplement,
+                              onSaved: (text) {
+                                _controller.address.complement = text;
+                              },
                             ),
                           ],
                         ),

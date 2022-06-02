@@ -46,6 +46,7 @@ class ContactNavigatorBarItemView
                               itemBuilder: (context, index) {
                                 var contact = contactList[index];
                                 return ListTile(
+                                  trailing: Text(contact.addressId.toString()),
                                   title: Text(
                                     contact.name,
                                     style: const TextStyle(
