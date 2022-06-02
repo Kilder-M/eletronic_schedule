@@ -44,14 +44,15 @@ class AddressDAOImp implements AddressInterface {
       return address;
     } else {
       sql =
-          '''UPDATE address SET city = ?,state = ?, zip_code = ?, street_address = ?, street_address_number = ?,complement = ?''';
+          '''UPDATE address SET city = ?,state = ?, zip_code = ?, street_address = ?, street_address_number = ?,complement = ? WHERE id = ?''';
       _db!.rawUpdate(sql, [
         address.city,
         address.state,
         address.zipCode,
         address.streetAddress,
         address.streetAddressNumber,
-        address.complement
+        address.complement,
+        address.id
       ]);
       return address;
     }
