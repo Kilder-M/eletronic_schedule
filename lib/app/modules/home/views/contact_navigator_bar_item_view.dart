@@ -85,7 +85,7 @@ class ContactNavigatorBarItemView
                               },
                             )
                           : const Center(
-                              child: Text('Não há contatos salvo.'),
+                              child: Text('Não há contatos.'),
                             );
                     }
                   },
