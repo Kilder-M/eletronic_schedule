@@ -6,6 +6,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const CONTACT_FORM = _Paths.CONTACT_FORM;
   static const DETAILS_CONTACT = _Paths.DETAILS_CONTACT;
+  static const NOTIFICATION_FORM = _Paths.NOTIFICATION_FORM;
 }
 
 abstract class _Paths {
@@ -13,4 +14,5 @@ abstract class _Paths {
   static const HOME = '/home';
   static const CONTACT_FORM = '/contact-form';
   static const DETAILS_CONTACT = '/details-contact';
+  static const NOTIFICATION_FORM = '/notification-form';
 }

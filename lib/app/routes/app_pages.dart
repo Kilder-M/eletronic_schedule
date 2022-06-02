@@ -6,6 +6,8 @@ import '../modules/details_contact/bindings/details_contact_binding.dart';
 import '../modules/details_contact/views/details_contact_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/notification_form/bindings/notification_form_binding.dart';
+import '../modules/notification_form/views/notification_form_view.dart';
 
 part 'app_routes.dart';
 
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.DETAILS_CONTACT,
       page: () => DetailsContactView(),
       binding: DetailsContactBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATION_FORM,
+      page: () => NotificationFormView(),
+      binding: NotificationFormBinding(),
     ),
   ];
 }
