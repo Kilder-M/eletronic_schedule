@@ -1,20 +1,18 @@
+import 'package:eletronic_schedule/app/domain/entities/custom_notification.dart';
+import 'package:eletronic_schedule/app/domain/services/custom_notification_service.dart';
+import 'package:eletronic_schedule/app/utils/custom_notification_util.dart';
 import 'package:get/get.dart';
 
 class NotificationNavigatorBarItemController extends GetxController {
-  //TODO: Implement NotificationNavigatorBarItemController
+  final customNotificationUtil = CustomNotificationUtil();
+  final _customNotificationService = CustomNotificationService();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  final customNotificationList = Future.value(<CustomNotification>[]).obs;
+  NotificationNavigatorBarItemController() {
+    getList();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  getList() async {
+    customNotificationList.value = _customNotificationService.getList();
   }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }
