@@ -8,8 +8,6 @@ class ContactService {
 
   save(Contact contact, {Address? address}) async {
     validatePhone(contact.phone);
-    // validateState(address.city, address.state, address.zipCode, address.streetAddress, address.streetAddressNumber, address.complement);
-    // validateCity(address.city, address.state, address.zipCode, address.streetAddress, address.streetAddressNumber, address.complement);
     await _contactDAO.save(contact);
   }
 

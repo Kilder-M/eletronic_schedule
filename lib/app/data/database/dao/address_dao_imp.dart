@@ -27,13 +27,13 @@ class AddressDAOImp implements AddressInterface {
   }
 
   @override
-  save(Address address) async {
+  Future<Address> save(Address address) async {
     _db = await Connection.getConnection();
     String sql;
     if (address.id == null) {
       sql =
           '''INSERT INTO address(city,state,zip_code,street_address,street_address_number,complement)VALUES(?,?,?,?,?,?)''';
-      _db!.rawInsert(sql, [
+      address.id = await _db!.rawInsert(sql, [
         address.city,
         address.state,
         address.zipCode,
@@ -41,6 +41,7 @@ class AddressDAOImp implements AddressInterface {
         address.streetAddressNumber,
         address.complement
       ]);
+      return address;
     } else {
       sql =
           '''UPDATE address SET city = ?,state = ?, zip_code = ?, street_address = ?, street_address_number = ?,complement = ?''';
@@ -52,6 +53,7 @@ class AddressDAOImp implements AddressInterface {
         address.streetAddressNumber,
         address.complement
       ]);
+      return address;
     }
   }
 }
