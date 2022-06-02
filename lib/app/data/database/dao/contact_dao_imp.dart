@@ -66,13 +66,14 @@ class ContactDAOImp implements ContactInterface {
         ]);
       } else {
         sql =
-            '''UPDATE contact SET address_id = ?, image_url = ?, email = ? phone = ?, name = ? ''';
+            '''UPDATE contact SET address_id = ?,image_url = ?, email = ?, phone = ?, name = ? WHERE id = ?''';
         _db!.rawUpdate(sql, [
           contact.addressId,
           contact.imageUrl,
           contact.email,
           contact.phone,
-          contact.name
+          contact.name,
+          contact.id
         ]);
       }
     } catch (e) {
