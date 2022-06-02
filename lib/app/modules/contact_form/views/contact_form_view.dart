@@ -27,8 +27,9 @@ class ContactFormView extends GetView<ContactFormController> {
         TextEditingController(text: _controller.address.state).obs;
     final textEditingControllerStreetAddress =
         TextEditingController(text: _controller.address.streetAddress).obs;
-    final textEditingControllerStreetAddresNumber = TextEditingController(
-        text: _controller.address.streetAddressNumber).obs;
+    final textEditingControllerStreetAddresNumber =
+        TextEditingController(text: _controller.address.streetAddressNumber)
+            .obs;
     final textEditingControllerZipCode =
         TextEditingController(text: _controller.address.zipCode).obs;
     final textEditingControllerComplement =
@@ -127,91 +128,87 @@ class ContactFormView extends GetView<ContactFormController> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
-                    child: 
-                      SingleChildScrollView(
-                        child: Form(
-                          key: form,
-                          child: 
-                             Column(
-                              children: [
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                TextFormFieldWidget(
-                                  labelText: 'Nome',
-                                  controller: textEditingControllerName.value,
-                                  validator: _controller.validateName,
-                                  onSaved: (text) {
-                                    _controller.contact.name = text ?? '';
-                                  },
-                                ),
-                                TextFormFieldWidget(
-                                  labelText: 'Telefone',
-                                  controller: textEditingControllerPhone.value,
-                                  validator: _controller.validatePhone,
-                                  keyboardType: TextInputType.phone,
-                                  inputFormatter: [mask],
-                                  onSaved: (text) {
-                                    _controller.contact.phone = text ?? '';
-                                  },
-                                ),
-                                TextFormFieldWidget(
-                                  labelText: 'Email',
-                                  controller: textEditingControllerEmail.value,
-                                  onSaved: (text) {
-                                    _controller.contact.email = text;
-                                  },
-                                ),
-                                TextFormFieldWidget(
-                                  labelText: 'Cidade',
-                                  controller: textEditingControllerCity.value,
-                                  onSaved: (text) {
-                                    _controller.address.city = text;
-                                  },
-                                ),
-                                TextFormFieldWidget(
-                                  labelText: 'Estado',
-                                  controller: textEditingControllerState.value,
-                                  onSaved: (text) {
-                                    _controller.address.state = text;
-                                  },
-                                ),
-                                TextFormFieldWidget(
-                                  labelText: 'Endereço',
-                                  controller: textEditingControllerStreetAddress.value,
-                                  onSaved: (text) {
-                                    _controller.address.streetAddress = text;
-                                  },
-                                ),
-                                TextFormFieldWidget(
-                                  labelText: 'Número',
-                                  controller:
-                                      textEditingControllerStreetAddresNumber.value,
-                                  onSaved: (text) {
-                                    _controller.address.streetAddressNumber =
-                                        text;
-                                  },
-                                ),
-                                TextFormFieldWidget(
-                                  labelText: 'CEP',
-                                  controller: textEditingControllerZipCode.value,
-                                  onSaved: (text) {
-                                    _controller.address.zipCode = text;
-                                  },
-                                ),
-                                TextFormFieldWidget(
-                                  labelText: 'Complemento',
-                                  controller: textEditingControllerComplement.value,
-                                  onSaved: (text) {
-                                    _controller.address.complement = text;
-                                  },
-                                ),
-                              ],
+                    child: SingleChildScrollView(
+                      child: Form(
+                        key: form,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 10,
                             ),
-                          ),
-                        
+                            TextFormFieldWidget(
+                              labelText: 'Nome',
+                              controller: textEditingControllerName.value,
+                              validator: _controller.validateName,
+                              onSaved: (text) {
+                                _controller.contact.name = text ?? '';
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Telefone',
+                              controller: textEditingControllerPhone.value,
+                              validator: _controller.validatePhone,
+                              keyboardType: TextInputType.phone,
+                              inputFormatter: [mask],
+                              onSaved: (text) {
+                                _controller.contact.phone = text ?? '';
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Email',
+                              controller: textEditingControllerEmail.value,
+                              onSaved: (text) {
+                                _controller.contact.email = text;
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Cidade',
+                              controller: textEditingControllerCity.value,
+                              onSaved: (text) {
+                                _controller.address.city = text;
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Estado',
+                              controller: textEditingControllerState.value,
+                              onSaved: (text) {
+                                _controller.address.state = text;
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Endereço',
+                              controller:
+                                  textEditingControllerStreetAddress.value,
+                              onSaved: (text) {
+                                _controller.address.streetAddress = text;
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Número',
+                              controller:
+                                  textEditingControllerStreetAddresNumber.value,
+                              onSaved: (text) {
+                                _controller.address.streetAddressNumber = text;
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'CEP',
+                              controller: textEditingControllerZipCode.value,
+                              onSaved: (text) {
+                                _controller.address.zipCode = text;
+                              },
+                            ),
+                            TextFormFieldWidget(
+                              labelText: 'Complemento',
+                              controller: textEditingControllerComplement.value,
+                              onSaved: (text) {
+                                _controller.address.complement = text;
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                    
+                    ),
                   ),
                 ),
               ),
