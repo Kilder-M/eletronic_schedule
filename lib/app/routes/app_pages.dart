@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/contact_form/bindings/contact_form_binding.dart';
 import '../modules/contact_form/views/contact_form_view.dart';
+import '../modules/details_contact/bindings/details_contact_binding.dart';
+import '../modules/details_contact/views/details_contact_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 
@@ -22,6 +24,11 @@ class AppPages {
       name: _Paths.CONTACT_FORM,
       page: () => ContactFormView(),
       binding: ContactFormBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAILS_CONTACT,
+      page: () => DetailsContactView(),
+      binding: DetailsContactBinding(),
     ),
   ];
 }

@@ -15,4 +15,8 @@ class AddressService {
   Future<List<Address>> getList() async {
     return await _addressDAO.getList();
   }
+
+  Future<Address> getById(int? id) async {
+    return await _addressDAO.getById(id);
+  }
 }
