@@ -1,12 +1,19 @@
-class DateTimeConverterToDuration{
-DateTimeConverterToDuration();
-    int convertDateTimeToSeconds(DateTime dateTime){
-      var difference = DateTime.now().difference(dateTime);
-       return difference.inSeconds * -1;
-    }
+import 'package:flutter/material.dart';
 
-    int convertDateTimeToDays(DateTime dateTime){
-      var difference = DateTime.now().difference(dateTime);
-       return difference.inDays * -1;
-    }
+class TimesConverter {
+  TimesConverter();
+
+  int convertHourToSeconds(int hour) {
+    return hour * 3600;
+  }
+
+  int convertMinutesToSeconds(int minute) {
+    return minute * 60;
+  }
+
+  int convertTimeOfDayToSeconds(TimeOfDay timeOfDay) {
+    return 
+        convertHourToSeconds(timeOfDay.hour) +
+            convertMinutesToSeconds(timeOfDay.minute);
+  }
 }
