@@ -1,3 +1,4 @@
+import 'package:eletronic_schedule/app/domain/entities/address_entity.dart';
 import 'package:eletronic_schedule/app/domain/entities/contact_entity.dart';
 import 'package:eletronic_schedule/app/modules/contact_form/views/contact_form_view.dart';
 import 'package:eletronic_schedule/app/modules/details_contact/views/details_contact_view.dart';
@@ -11,10 +12,11 @@ class ContactNavigatorBarItemView
 
   @override
   Widget build(BuildContext context) {
+    var _controller = Get.put(ContactNavigatorBarItemController());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.to(const ContactFormView());
+            Get.to(const ContactFormView(),arguments: [Contact(name: '', phone: ''),Address()]);
           },
           backgroundColor: Colors.pink,
           child: const Icon(Icons.add)),
@@ -33,7 +35,7 @@ class ContactNavigatorBarItemView
               ),
               Expanded(
                 child: FutureBuilder(
-                  future: controller.contactList.value,
+                  future: _controller.contactList.value,
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(
@@ -57,7 +59,8 @@ class ContactNavigatorBarItemView
                                         showDialogMethod(context);
                                       },
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: const [
                                           Icon(
                                             Icons.more_horiz_outlined,
@@ -97,20 +100,20 @@ class ContactNavigatorBarItemView
 
   showDialogMethod(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('O que deseja fazer?'),
-              actions: [
-                TextButton(
-                  onPressed: () => {},
-                  child: const Text('Excluir'),
-                ),
-                TextButton(
-                  onPressed: () =>
-                      Get.back(),
-                  child: const Text('Voltar'),
-                ),
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('O que deseja fazer?'),
+        actions: [
+          TextButton(
+            onPressed: () => {},
+            child: const Text('Excluir'),
+          ),
+          TextButton(
+            onPressed: () => Get.back(),
+            child: const Text('Voltar'),
+          ),
+        ],
+      ),
+    );
   }
 }
