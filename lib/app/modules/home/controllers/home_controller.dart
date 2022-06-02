@@ -1,20 +1,22 @@
+import 'package:eletronic_schedule/app/utils/custom_notification_util.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  final notificationUtil = CustomNotificationUtil();
+  var selectedindex = 0.obs;
+  
+  
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  
+
+  // getContactByName(String name) async {
+  //   contactList.value = _contactDAOImp.getListByName(name);
+  // }
+
+  // getContactByPhone(String phone) async {
+  //   contactList.value = _contactDAOImp.getListByPhone(phone);
+  // }
+  void onTapBottomBarIcon(int index) {
+    selectedindex.value = index;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }
