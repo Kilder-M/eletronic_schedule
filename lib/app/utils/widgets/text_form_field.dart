@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 class TextFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
+  final String? initialValue;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatter;
   final bool? isObscureText;
@@ -23,7 +24,7 @@ class TextFormFieldWidget extends StatelessWidget {
       this.isObscureText,
       this.isEnableSugestions,
       this.isEnableAutoCorrect,
-      required this.controller, this.onChanged})
+      required this.controller, this.onChanged,this.initialValue})
       : super(key: key);
 
   @override
@@ -32,6 +33,7 @@ class TextFormFieldWidget extends StatelessWidget {
       padding: const EdgeInsets.only(bottom:8.0),
       child: TextFormField(
         validator: validator,
+        initialValue: initialValue,
         inputFormatters: inputFormatter,
         keyboardType: keyboardType,
         controller: controller,
