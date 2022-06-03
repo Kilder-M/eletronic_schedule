@@ -22,7 +22,7 @@ class CustomNotificationDAO implements CustomNotificationInterface {
   remove(CustomNotification customNotification) async {
     _db = await Connection.getConnection();
     var sql = '''
-    DELETE FROM connection WHERE id = ?
+    DELETE FROM notification WHERE id = ?
    ''';
     await _db!.rawDelete(sql, [customNotification.id]);
   }
