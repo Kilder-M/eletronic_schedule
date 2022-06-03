@@ -22,7 +22,9 @@ class ContactNavigatorBarItemView
       }
     });
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
       floatingActionButton: FloatingActionButton(
+
           onPressed: () {
             Get.to(const ContactFormView(),
                 arguments: [Contact(name: '', phone: ''), Address()]);

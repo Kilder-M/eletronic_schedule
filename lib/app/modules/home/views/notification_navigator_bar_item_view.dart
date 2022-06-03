@@ -12,6 +12,7 @@ class NotificationNavigatorBarItemView
   Widget build(BuildContext context) {
     var _controller = Get.put(NotificationNavigatorBarItemController());
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             Get.to(
