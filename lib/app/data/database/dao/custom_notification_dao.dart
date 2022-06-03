@@ -19,34 +19,38 @@ class CustomNotificationDAO implements CustomNotificationInterface {
   }
 
   @override
-  remove(CustomNotification customNotification)async {
+  remove(CustomNotification customNotification) async {
     _db = await Connection.getConnection();
     var sql = '''
-    DELETE FROM connection WHERE id = ?
+    DELETE FROM notification WHERE id = ?
    ''';
     await _db!.rawDelete(sql, [customNotification.id]);
   }
 
   @override
-  save(CustomNotification customNotification) async{
-   _db = await Connection.getConnection();
+  Future<CustomNotification> save(CustomNotification customNotification) async {
+    _db = await Connection.getConnection();
     String sql;
     if (customNotification.id == null) {
-      sql =
-          '''INSERT INTO notification(title,body,payload)VALUES(?,?,?)''';
-      _db!.rawInsert(sql, [
+      sql = '''INSERT INTO notification(title,body,payload,time)VALUES(?,?,?,?)''';
+     customNotification.id = await _db!.rawInsert(sql, [
         customNotification.title,
         customNotification.body,
         customNotification.payload,
+        customNotification.time
       ]);
+      return customNotification;
     } else {
       sql =
-          '''UPDATE notification SET title = ?,body = ?, payload = ?,''';
+          '''UPDATE notification SET title = ?,body = ?, payload = ?, time = ? WHERE id = ?''';
       _db!.rawUpdate(sql, [
         customNotification.title,
         customNotification.body,
         customNotification.payload,
+        customNotification.time,
+        customNotification.id,
       ]);
+      return customNotification;
     }
   }
 }

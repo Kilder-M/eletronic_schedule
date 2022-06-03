@@ -10,9 +10,12 @@ class TextFormFieldWidget extends StatelessWidget {
   final bool? isObscureText;
   final bool? isEnableSugestions;
   final bool? isEnableAutoCorrect;
+  final bool? enabled;
+  final Widget? prefixIcon;
   final void Function(String?)? onSaved;
   final String Function(String?)? validator;
   final void Function(String)? onChanged;
+  final void Function()? onTap;
 
   const TextFormFieldWidget(
       {Key? key,
@@ -24,15 +27,22 @@ class TextFormFieldWidget extends StatelessWidget {
       this.isObscureText,
       this.isEnableSugestions,
       this.isEnableAutoCorrect,
-      required this.controller, this.onChanged,this.initialValue})
+      required this.controller,
+      this.onChanged,
+      this.initialValue,
+      this.onTap,
+      this.enabled,
+      this.prefixIcon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom:8.0),
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: TextFormField(
         validator: validator,
+        enabled: enabled,
+        onTap: onTap,
         initialValue: initialValue,
         inputFormatters: inputFormatter,
         keyboardType: keyboardType,
@@ -40,6 +50,13 @@ class TextFormFieldWidget extends StatelessWidget {
         onSaved: onSaved,
         onChanged: onChanged,
         decoration: InputDecoration(
+          prefixIcon: prefixIcon,
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(25.0),
+            borderSide: const BorderSide(
+              color: Colors.grey,
+            ),
+          ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25.0),
             borderSide: const BorderSide(

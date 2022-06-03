@@ -18,12 +18,12 @@ class AddressDAOImp implements AddressInterface {
   }
 
   @override
-  remove(Address address) async {
+  remove(int addressId) async {
     _db = await Connection.getConnection();
     var sql = '''
     DELETE FROM address WHERE id = ?
    ''';
-    await _db!.rawDelete(sql, [address.id]);
+    await _db!.rawDelete(sql, [addressId]);
   }
 
   @override

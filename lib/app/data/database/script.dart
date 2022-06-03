@@ -29,8 +29,9 @@ const createCustomNotificationTable = '''
   CREATE TABLE notification(
    id INTEGER NOT NULL PRIMARY KEY
   ,title CHAR(50) NOT NULL
-  ,body VARCHAR(500) NOT NULL
-  ,payload CHAR(30) 
+  ,body VARCHAR(500) 
+  ,payload CHAR(30)
+  ,time CHAR(30) NOT NULL 
   
   )
  ''';

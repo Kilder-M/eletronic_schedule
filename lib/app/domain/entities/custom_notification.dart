@@ -3,18 +3,21 @@ class CustomNotification {
   String? title;
   String? body;
   String? payload;
+  String? time;
 
   CustomNotification(
-      {required this.id,
+      {this.id,
       required this.title,
-      required this.body,
-      required this.payload});
+      required this.time,
+      this.body,
+      this.payload = '/home'});
 
-
-      factory CustomNotification.fromMap(Map<String, dynamic> sql) => CustomNotification(
+  factory CustomNotification.fromMap(Map<String, dynamic> sql) =>
+      CustomNotification(
         id: sql['id'],
         title: sql["title"],
         body: sql["body"],
         payload: sql["payload"],
+        time: sql['time'],
       );
 }
