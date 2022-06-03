@@ -8,7 +8,7 @@ class ContactDAOImp implements ContactInterface {
   @override
   Future<List<Contact>> getList() async {
     _db = await Connection.getConnection();
-    List<Map<String, dynamic>> queryResult = await _db!.query('contact');
+    List<Map<String, dynamic>> queryResult = await _db!.query('contact',orderBy: 'name ASC');
     List<Contact> contactList = List.generate(queryResult.length, (index) {
       var row = queryResult[index];
       return Contact.fromMap(row);
@@ -20,7 +20,7 @@ class ContactDAOImp implements ContactInterface {
   Future<List<Contact>> getListByName(String? name) async {
     _db = await Connection.getConnection();
     List<Map<String, dynamic>> queryResult =
-        await _db!.query('contact', where: 'name = ?', whereArgs: [name]);
+        await _db!.query('contact', where: 'name=?', whereArgs: [name?.toLowerCase()],orderBy: 'name ASC');
     List<Contact> contactList = List.generate(queryResult.length, (index) {
       var row = queryResult[index];
       return Contact.fromMap(row);
@@ -32,7 +32,7 @@ class ContactDAOImp implements ContactInterface {
   Future<List<Contact>> getListByPhone(String phone) async {
     _db = await Connection.getConnection();
     List<Map<String, dynamic>> queryResult =
-        await _db!.query('contact', where: 'phone = ?', whereArgs: [phone]);
+        await _db!.query('contact', where: 'phone = ?', whereArgs: [phone],orderBy: 'name ASC');
     List<Contact> contactList = List.generate(queryResult.length, (index) {
       var row = queryResult[index];
       return Contact.fromMap(row);
