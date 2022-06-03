@@ -64,6 +64,10 @@ class CustomNotificationUtil {
     );
   }
 
+  cancelNotification({required CustomNotification customNotification}){
+    localNotificationPlugin.cancel(customNotification.id!);
+  }
+
   checkForNotifications()async{
     final details = await localNotificationPlugin.getNotificationAppLaunchDetails();
     if(details != null && details.didNotificationLaunchApp){

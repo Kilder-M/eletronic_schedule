@@ -12,7 +12,13 @@ class NotificationNavigatorBarItemController extends GetxController {
     getList();
   }
 
-  getList() async {
-    customNotificationList.value = _customNotificationService.getList();
+  getList(){
+    customNotificationList.value =  _customNotificationService.getList();
+  }
+
+  remove(CustomNotification customNotification)async{
+   await _customNotificationService.remove(customNotification);
+   await customNotificationUtil.cancelNotification(customNotification: customNotification);
+   await getList();
   }
 }
