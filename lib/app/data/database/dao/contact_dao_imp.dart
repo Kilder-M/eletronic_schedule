@@ -6,9 +6,9 @@ import 'package:sqflite/sqflite.dart';
 class ContactDAOImp implements ContactInterface {
   Database? _db;
   @override
-  Future<List<Contact>> getList() async {
+  Future<List<Contact>> getList({int? limit,int? offset}) async {
     _db = await Connection.getConnection();
-    List<Map<String, dynamic>> queryResult = await _db!.query('contact',orderBy: 'name ASC');
+    List<Map<String, dynamic>> queryResult = await _db!.query('contact',orderBy: 'name ASC',limit: limit,offset: offset);
     List<Contact> contactList = List.generate(queryResult.length, (index) {
       var row = queryResult[index];
       return Contact.fromMap(row);

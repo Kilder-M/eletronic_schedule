@@ -4,16 +4,19 @@ import 'package:eletronic_schedule/app/domain/services/contact_service.dart';
 import 'package:get/get.dart';
 
 class ContactNavigatorBarItemController extends GetxController {
+  var limit = 15.obs;
+  var offset = 0.obs;
   final _contactService = ContactService();
   final _addressService = AddressService();
-  var contactList = Future.value(<Contact>[]).obs;
+  var contactList = <Contact>[].obs;
 
   ContactNavigatorBarItemController() {
     getContactList();
   }
 
-  Future<List<Contact>> getContactList() {
-    return contactList.value = _contactService.getList();
+  Future<List<Contact>> getContactList() async {
+    return contactList.value =
+        await _contactService.getList(limit: limit.value, offset: offset.value);
   }
 
   remove(Contact contact) async {
@@ -22,5 +25,11 @@ class ContactNavigatorBarItemController extends GetxController {
     }
     await _contactService.remove(contact);
     await getContactList();
+  }
+
+  updatePagination() async {
+    offset.value = offset.value + limit.value;
+    contactList.addAll(await _contactService.getList(
+        limit: limit.value, offset: offset.value));
   }
 }

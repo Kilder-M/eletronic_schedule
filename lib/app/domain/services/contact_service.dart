@@ -15,8 +15,8 @@ class ContactService {
     await _contactDAO.remove(contact);
   }
 
-  Future<List<Contact>> getList() async {
-    return await _contactDAO.getList();
+  Future<List<Contact>> getList({int? limit, int?offset}) async {
+    return await _contactDAO.getList(limit: limit,offset: offset);
   }
 
  Future<List<Contact>> getByName(String name) async {
