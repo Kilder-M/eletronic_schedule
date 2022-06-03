@@ -19,8 +19,8 @@ class ContactService {
     return await _contactDAO.getList();
   }
 
-  getByName(String name) async {
-    await _contactDAO.getListByName(name);
+ Future<List<Contact>> getByName(String name) async {
+    return await _contactDAO.getListByName(name);
   }
 
   getByPhone(String phone) async {
