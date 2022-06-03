@@ -56,7 +56,10 @@ class ContactNavigatorBarItemView
                                   child: ListTile(
                                     trailing: GestureDetector(
                                       onTap: () {
-                                        showDialogMethod(context);
+                                        showDialogMethod(context,(){
+                                          _controller.remove(contact);
+                                          Get.back();
+                                        });
                                       },
                                       child: Column(
                                         mainAxisAlignment:
@@ -98,14 +101,14 @@ class ContactNavigatorBarItemView
     );
   }
 
-  showDialogMethod(BuildContext context) {
+  showDialogMethod(BuildContext context,void Function() onPressed) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('O que deseja fazer?'),
         actions: [
           TextButton(
-            onPressed: () => {},
+            onPressed: onPressed,
             child: const Text('Excluir'),
           ),
           TextButton(

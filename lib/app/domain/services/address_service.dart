@@ -8,8 +8,8 @@ class AddressService {
     return await _addressDAO.save(address);
   }
 
-  remove(Address address) async {
-    await _addressDAO.remove(address);
+  remove(int addressId) async {
+    await _addressDAO.remove(addressId);
   }
 
   Future<List<Address>> getList() async {
