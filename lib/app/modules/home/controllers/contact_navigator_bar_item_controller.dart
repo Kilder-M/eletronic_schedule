@@ -16,7 +16,7 @@ class ContactNavigatorBarItemController extends GetxController {
 
   Future<List<Contact>> getContactList() async {
     return contactList.value =
-        await _contactService.getList(limit: limit.value, offset: offset.value);
+        await _contactService.getList();
   }
 
   remove(Contact contact) async {
