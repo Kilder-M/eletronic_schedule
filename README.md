@@ -1,6 +1,10 @@
 # eletronic_schedule
 
-A new Flutter project.
+Trata-se de um aplicativo que possui todos os métodos de um CRUD com relação a um contato. é possível, também, criar lembretes.
+
+Para instalação, basta clonar o repositorio e rodar o projeto na sua maquina.
+
+OBS: No momento só está disponível para ANDROID.
 
 ## Getting Started
 
