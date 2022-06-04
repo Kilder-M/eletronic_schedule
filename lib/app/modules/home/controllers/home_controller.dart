@@ -4,18 +4,11 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   final notificationUtil = CustomNotificationUtil();
   var selectedindex = 0.obs;
-  
-  
 
-  
+  HomeController() {
+    notificationUtil.checkForNotifications();
+  }
 
-  // getContactByName(String name) async {
-  //   contactList.value = _contactDAOImp.getListByName(name);
-  // }
-
-  // getContactByPhone(String phone) async {
-  //   contactList.value = _contactDAOImp.getListByPhone(phone);
-  // }
   void onTapBottomBarIcon(int index) {
     selectedindex.value = index;
   }
