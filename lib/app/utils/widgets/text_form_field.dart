@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 class TextFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
+  final int? maxLength;
   final String? initialValue;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatter;
@@ -32,7 +33,7 @@ class TextFormFieldWidget extends StatelessWidget {
       this.initialValue,
       this.onTap,
       this.enabled,
-      this.prefixIcon})
+      this.prefixIcon, this.maxLength})
       : super(key: key);
 
   @override
@@ -47,6 +48,7 @@ class TextFormFieldWidget extends StatelessWidget {
         inputFormatters: inputFormatter,
         keyboardType: keyboardType,
         controller: controller,
+        maxLength: maxLength,
         onSaved: onSaved,
         onChanged: onChanged,
         decoration: InputDecoration(
