@@ -9,7 +9,6 @@ class Connection {
     if (_db == null) {
       String path =
           join(await getDatabasesPath(), 'eletronic_schedule_data_base');
-      deleteDatabase(path);
       return _db =
           await openDatabase(path, version: 1, onCreate: (db, v) async {
         await db.execute(createAddressTable);
