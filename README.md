@@ -1,6 +1,6 @@
 # eletronic_schedule
 
-Esse projeto era o desafio que precisava ser desenvolvido em 7 dias.
+Esse projeto era um desafio que precisava ser desenvolvido em 7 dias.
 
 Trata-se de um aplicativo que possui todos os métodos de um CRUD com relação a um contato. é possível, também, criar lembretes.
 
