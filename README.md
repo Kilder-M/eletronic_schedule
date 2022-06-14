@@ -18,17 +18,17 @@ Conceitos utilizados:
 
 Para instalação, basta clonar o repositorio e rodar o projeto na sua maquina.
 
-![img](https://github.com/Kilder-M/eletronic_schedule/blob/main/assets/prints/Tela de contato vazia.png)
+![img](https://github.com/Kilder-M/eletronic_schedule/assets/prints/Tela de contato vazia.png)
 
-![img](https://github.com/Kilder-M/eletronic_schedule/blob/main/assets/prints/Tela de contato com um contato.png)
+![img](https://github.com/Kilder-M/eletronic_schedule/assets/prints/Tela de contato com um contato.png)
 
-![img](https://github.com/Kilder-M/eletronic_schedule/blob/main/assets/prints/TEla de lembrete.png)
+![img](https://github.com/Kilder-M/eletronic_schedule/assets/prints/TEla de lembrete.png)
 
-![img](https://github.com/Kilder-M/eletronic_schedule/blob/main/assets/prints/Tela de adicionar lembrete.png)
+![img](https://github.com/Kilder-M/eletronic_schedule/assets/prints/Tela de adicionar lembrete.png)
 
-![img](https://github.com/Kilder-M/eletronic_schedule/blob/main/assets/prints/Tela de definir hora da notificação.png)
+![img](https://github.com/Kilder-M/eletronic_schedule/assets/prints/Tela de definir hora da notificação.png)
 
-![img](https://github.com/Kilder-M/eletronic_schedule/blob/main/assets/prints/Tela com notificação.png)
+![img](https://github.com/Kilder-M/eletronic_schedule/assets/prints/Tela com notificação.png)
 
 OBS: No momento só está disponível para ANDROID.
 
