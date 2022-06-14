@@ -28,7 +28,7 @@ Para instalação, basta clonar o repositorio e rodar o projeto na sua maquina.
 
 ![img](https://github.com/Kilder-M/eletronic_schedule/blob/main/assets/prints/Tela%20de%20contato%20vazia.png)
 
-![img](https://github.com/Kilder-M/Kilder-M/eletronic_schedule/blob/main/assets/prints/Tela%20de%20definir%20hora%20da%20notificação.png)
+![img](https://github.com/Kilder-M/eletronic_schedule/blob/main/assets/prints/Tela%20de%20definir%20hora%20da%20notificação.png)
 
 OBS: No momento só está disponível para ANDROID.
 
